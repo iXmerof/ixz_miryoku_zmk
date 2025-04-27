@@ -5,6 +5,7 @@
 
 #include "miryoku_babel/miryoku_layer_selection.h"
 #include "miryoku_babel/miryoku_layer_list.h"
+#include <zmk/keys.h>
 
 #define U_MACRO_VA_ARGS(macro, ...) macro(__VA_ARGS__)
 #define U_STRINGIFY(x) #x
@@ -23,7 +24,7 @@
 #define U_NA &none // present but not available for use
 #define U_NU &none // available but not used
 
-#define U_TAPPING_TERM 200
+#define U_TAPPING_TERM 400
 
 #include "miryoku_clipboard.h"
 
@@ -42,3 +43,10 @@
 #else
   #include "miryoku_behaviors.h"
 #endif
+
+#define MY_TEXT_STRING SEND_STRING("kolorowa#12klodeczka")
+const struct zmk_keymap_layer media_layer[] = {
+    [0] = {  
+        [KC_RGB_VAI] = MT(MOD_LSFT, MY_TEXT_STRING),  // Long press sends the text string
+    },
+};
